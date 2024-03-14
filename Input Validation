@@ -1,0 +1,14 @@
+#!/bin/bash
+# This is a code to confirm the first argument is here
+validate_argument()
+{
+    if ! [ -z "$1" ];
+    then
+        echo "The first argument is here"
+    else
+        echo "Please enter the first argument"
+    fi
+}
+
+# Call the function with an argument
+validate_argument "$1"
