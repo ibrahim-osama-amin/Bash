@@ -1,0 +1,45 @@
+##################################
+# Author: Ibrahim Osama 
+#
+# Date: 15/07/2024
+#
+# This script shortens directory and can be used to make an alias
+#
+# Version: v1
+####################################
+
+#!/bin/bash
+
+#input validation
+
+if [ $# -eq 0 ]; then
+
+        echo "Please enter the project number"
+
+        return 1
+
+fi
+
+echo "Let's go to project $1"
+
+target_dir="/projects/project$1" 
+
+echo "Going to $target_dir"
+
+if [ ! -d "$target_dir" ]; then
+
+        echo "My friend, this directory $target_dir does not exist."
+
+        return 2
+
+fi
+
+cd "$target_dir"
+
+echo "You are now in project $1 . Good luck"
+
+
+
+#If you want to add this as an alias add the below line in your ~/.bashrc
+#alias gotocase='source /auto/home/ibrahim_osama/gotocase'
+
