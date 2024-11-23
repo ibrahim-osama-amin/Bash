@@ -1,0 +1,24 @@
+#!/bin/bash
+#this file should be added as .git/hooks/commit-msg
+# Regular expression to confirm our commit message contains three pieces of information 
+name_regex="^Name: .+"
+jira_regex="^Jira-Ticket: .+"
+desc_regex="^Description: .+"
+
+# Get the commit message file passed as an argument
+commit_msg_file="$1"
+commit_msg=$(cat "$commit_msg_file")
+
+# Check for the presence of all three required fields
+if ! echo "$commit_msg" | grep -Pq "$name_regex" || \
+   ! echo "$commit_msg" | grep -Pq "$jira_regex" || \
+   ! echo "$commit_msg" | grep -Pq "$desc_regex"; then
+  echo "Commit message does not contain all the information needed"
+  echo "The message should contain:"
+  echo "Name: x"
+  echo "Jira-Ticket: x"
+  echo "Description: xxxxxxxxxxx"
+  exit 1
+fi
+
+exit 0
